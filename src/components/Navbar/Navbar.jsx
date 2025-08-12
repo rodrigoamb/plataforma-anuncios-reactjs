@@ -25,7 +25,7 @@ export default function Navbar() {
         </div>
         <div className="flex-1 flex items-center justify-between">
           <div
-            className={`bg-white absolute z-20 w-full top-16 left-0 p-4 border-b lg:static lg:block lg:border-none ${
+            className={`bg-white absolute z-1 w-full top-16 left-0 p-4 border-b lg:static lg:block lg:border-none ${
               menuState ? "" : "hidden"
             }`}
           >

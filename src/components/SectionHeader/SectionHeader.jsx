@@ -1,4 +1,4 @@
-export default function SectionHeader() {
+export default function SectionHeader({ setOpen }) {
   return (
     <div className="max-w-screen-xl mx-auto px-4 md:px-8">
       <div className="items-start justify-between py-4 border-b md:flex">
@@ -9,12 +9,12 @@ export default function SectionHeader() {
           </p>
         </div>
         <div className="mt-6 md:mt-0">
-          <a
-            href="javascript:void(0)"
-            className="block px-4 py-2 text-center text-white duration-150 font-medium bg-indigo-600 rounded-lg hover:bg-indigo-500 active:bg-indigo-700 md:text-sm"
+          <button
+            onClick={() => setOpen(true)}
+            className="cursor-pointer block px-4 py-2 text-center text-white duration-150 font-medium bg-indigo-600 rounded-lg hover:bg-indigo-500 active:bg-indigo-700 md:text-sm"
           >
             Criar anúncio
-          </a>
+          </button>
         </div>
       </div>
     </div>
