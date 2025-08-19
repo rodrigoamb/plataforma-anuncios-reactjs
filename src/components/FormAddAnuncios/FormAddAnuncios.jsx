@@ -30,11 +30,10 @@ export default function FormAddAnuncios() {
 
       <div>
         <label className="font-medium">Descrição completa:</label>
-        <input
-          type="text"
+        <textarea
           required
-          className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
-        />
+          className="resize-none h-[200px] w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
+        ></textarea>
       </div>
 
       <div>

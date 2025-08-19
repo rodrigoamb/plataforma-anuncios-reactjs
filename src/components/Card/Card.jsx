@@ -1,4 +1,4 @@
-export default function Card({ texto }) {
+export default function Card({ texto, setOpenModal }) {
   const jobs = [
     {
       title: "UI – Front End Dev",
@@ -28,6 +28,10 @@ export default function Card({ texto }) {
       href: "javascript:void(0)",
     },
   ];
+
+  function handleOpenModalDelete() {
+    setOpenModal(true);
+  }
 
   return (
     <section className="mt-12 max-w-screen-lg mx-auto px-4 md:px-8">
@@ -92,7 +96,10 @@ export default function Card({ texto }) {
                       <button className="bg-[#8CE563] text-gray-600 px-6 py-2 rounded-md cursor-pointer font-semibold">
                         Editar
                       </button>
-                      <button className="bg-[#F28000] font-semibold px-6 py-2 rounded-md cursor-pointer text-gray-600">
+                      <button
+                        onClick={() => handleOpenModalDelete()}
+                        className="bg-[#F28000] font-semibold px-6 py-2 rounded-md cursor-pointer text-gray-600"
+                      >
                         Apagar
                       </button>
                     </>
