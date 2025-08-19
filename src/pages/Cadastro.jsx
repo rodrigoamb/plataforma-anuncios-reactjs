@@ -11,12 +11,12 @@ export default function Cadastro() {
   function handleSubmitCadastro(event) {
     event.preventDefault();
 
-    navigate("/login");
+    console.log(usuarioData);
   }
 
   function handleInputChange(event) {
     const { name, value } = event.target;
-    setUsuarioData((prevData) => ({ ...prevData, [name]: value }));
+    setUsuarioData((prevState) => ({ ...prevState, [name]: value }));
   }
 
   return (
@@ -113,6 +113,7 @@ export default function Cadastro() {
             <div>
               <label className="font-medium">Email</label>
               <input
+                onChange={handleInputChange}
                 type="email"
                 name="email"
                 required
@@ -122,6 +123,7 @@ export default function Cadastro() {
             <div>
               <label className="font-medium">Senha</label>
               <input
+                onChange={handleInputChange}
                 type="password"
                 name="senha"
                 required
@@ -131,6 +133,7 @@ export default function Cadastro() {
             <div>
               <label className="font-medium">Telefone</label>
               <input
+                onChange={handleInputChange}
                 type="number"
                 name="telefone"
                 required
@@ -140,6 +143,7 @@ export default function Cadastro() {
             <div>
               <label className="font-medium">Cidade</label>
               <input
+                onChange={handleInputChange}
                 type="text"
                 name="cidade"
                 required
@@ -149,6 +153,7 @@ export default function Cadastro() {
             <div>
               <label className="font-medium">Estado</label>
               <select
+                onChange={handleInputChange}
                 name="estado"
                 required
                 className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
