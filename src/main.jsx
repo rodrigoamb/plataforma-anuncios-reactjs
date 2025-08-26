@@ -10,6 +10,7 @@ import Estado from "./explicacoes/estado.jsx";
 import Estado2 from "./explicacoes/Estado2.jsx";
 import Inicio from "./pages/Inicio.jsx";
 import DetalheAnuncio from "./pages/DetalheAnuncio.jsx";
+import { ToastContainer } from "react-toastify";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -26,6 +27,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="/estado" element={<Estado />} />
         <Route path="/estado-2" element={<Estado2 />} />
       </Routes>
+      <ToastContainer />
     </BrowserRouter>
   </StrictMode>
 );

@@ -2,16 +2,46 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { estadosBrasil } from "../utils/estadosBrasil";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 export default function Cadastro() {
   const [usuarioData, setUsuarioData] = useState({});
 
   const navigate = useNavigate();
 
-  function handleSubmitCadastro(event) {
+  async function handleSubmitCadastro(event) {
     event.preventDefault();
 
-    console.log(usuarioData);
+    const dataUser = {
+      ...usuarioData,
+      telefone: Number(usuarioData.telefone),
+    };
+
+    console.log(dataUser);
+
+    try {
+      const response = await fetch(
+        "https://dc-classificados.up.railway.app/api/auth/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(dataUser),
+        }
+      );
+
+      const dataRes = await response.json();
+
+      if (response.ok) {
+        console.log(dataRes);
+        toast.success("Usuário cadastrado com sucesso!");
+        navigate("/login");
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("Erro ao cadastrar usuário. Tente novamente");
+    }
   }
 
   function handleInputChange(event) {
