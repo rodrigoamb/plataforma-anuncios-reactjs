@@ -8,17 +8,10 @@ import {
   TransitionChild,
 } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import FormAddAnuncios from "../FormAddAnuncios/FormAddAnuncios";
 
-export default function Drawer({ open, setOpen }) {
+export default function Drawer({ open, setOpen, children, drawerTitle }) {
   return (
     <div>
-      <button
-        onClick={() => setOpen(true)}
-        className="rounded-md bg-white/10 px-2.5 py-1.5 text-sm font-semibold text-white inset-ring inset-ring-white/5 hover:bg-white/20"
-      >
-        Open drawer
-      </button>
       <Dialog open={open} onClose={setOpen} className="relative z-10">
         <DialogBackdrop
           transition
@@ -48,11 +41,11 @@ export default function Drawer({ open, setOpen }) {
                 <div className="relative flex h-full flex-col overflow-y-auto bg-white py-6 shadow-xl after:absolute after:inset-y-0 after:left-0 after:w-px after:bg-white/10">
                   <div className="px-4 sm:px-6">
                     <DialogTitle className="text-base font-semibold text-black">
-                      Adicionar anúncio
+                      {drawerTitle}
                     </DialogTitle>
                   </div>
                   <div className="relative mt-6 flex-1 px-4 sm:px-6">
-                    <FormAddAnuncios />
+                    {children}
                   </div>
                 </div>
               </DialogPanel>
