@@ -1,16 +1,44 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function Login() {
   const [loginData, setLoginData] = useState({});
 
   const navigate = useNavigate();
 
-  function handleSubmitLogin(event) {
+  async function handleSubmitLogin(event) {
     event.preventDefault();
 
     console.log(loginData);
+
+    try {
+      const response = await fetch(
+        "https://dc-classificados.up.railway.app/api/auth/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(loginData),
+        }
+      );
+
+      const dataRes = await response.json();
+
+      if (response.ok) {
+        localStorage.setItem("token", dataRes.token);
+        localStorage.setItem("userId", dataRes.userId);
+        toast.success("Login feito com sucesso!");
+        navigate("/dashboard");
+      } else {
+        toast.error(dataRes.message);
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("Erro ao fazer login, tente novamente mais tarde.");
+    }
   }
 
   function handleChangeInputLogin(event) {
