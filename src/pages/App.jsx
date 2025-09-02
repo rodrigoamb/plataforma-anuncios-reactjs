@@ -17,7 +17,7 @@ export default function App() {
       <Card texto={"Meus anúncios"} setOpenModal={setOpenModal} />
 
       <Drawer open={open} setOpen={setOpen} drawerTitle={"Adicionar anúncio"}>
-        <FormAddAnuncios />
+        <FormAddAnuncios setOpen={setOpen} />
       </Drawer>
       <Modal open={openModal} setOpen={setOpenModal} />
     </div>

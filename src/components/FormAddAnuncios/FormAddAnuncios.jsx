@@ -1,7 +1,14 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
 
-export default function FormAddAnuncios() {
-  const [anuncioData, setAnuncioData] = useState({});
+export default function FormAddAnuncios({ setOpen }) {
+  const [anuncioData, setAnuncioData] = useState({
+    titulo: "",
+    preco: "",
+    descricaoCurta: "",
+    descricaoCompleta: "",
+    imagem: "",
+  });
 
   function handleChangeInputsAnuncios(event) {
     const { name, value } = event.target;
@@ -19,7 +26,34 @@ export default function FormAddAnuncios() {
     console.log(anuncio);
 
     //proxima aula consumir API adicionando o anuncio
+
+    const token = localStorage.getItem("token");
+    const userId = localStorage.getItem("userId");
+
+    try {
+      const response = await fetch(
+        `https://dc-classificados.up.railway.app/api/anuncios/addNewAnuncio?userId=${userId}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(anuncio),
+        }
+      );
+
+      if (response.ok) {
+        toast.success("Anúncio adicionado com sucesso");
+        //preciso recarregar os anuncios
+        setOpen(false);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   }
+
+  const caracteres = anuncioData?.descricaoCompleta.length;
 
   return (
     <form onSubmit={handleSubmitAddNewAnuncio} className="flex flex-col gap-4">
@@ -64,6 +98,7 @@ export default function FormAddAnuncios() {
           name="descricaoCompleta"
           className="resize-none h-[200px] w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
         ></textarea>
+        <p>Máximo 500 caracteres ({caracteres}/500)</p>
       </div>
 
       <div>
