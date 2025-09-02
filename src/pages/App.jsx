@@ -49,8 +49,6 @@ export default function App() {
     getAnuncios();
   }, []);
 
-  console.log(dataAnuncios);
-
   return (
     <div>
       {isLoading ? (
