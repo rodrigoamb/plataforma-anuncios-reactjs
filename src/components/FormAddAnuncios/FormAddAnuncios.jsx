@@ -23,10 +23,6 @@ export default function FormAddAnuncios({ setOpen }) {
       preco: Number(anuncioData.preco),
     };
 
-    console.log(anuncio);
-
-    //proxima aula consumir API adicionando o anuncio
-
     const token = localStorage.getItem("token");
     const userId = localStorage.getItem("userId");
 
@@ -95,6 +91,7 @@ export default function FormAddAnuncios({ setOpen }) {
         <textarea
           onChange={handleChangeInputsAnuncios}
           required
+          maxLength={500}
           name="descricaoCompleta"
           className="resize-none h-[200px] w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
         ></textarea>
