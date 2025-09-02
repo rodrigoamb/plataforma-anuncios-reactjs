@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
 
-export default function FormAddAnuncios({ setOpen }) {
+export default function FormAddAnuncios({ setOpen, getAnuncios }) {
   const [anuncioData, setAnuncioData] = useState({
     titulo: "",
     preco: "",
@@ -41,7 +41,7 @@ export default function FormAddAnuncios({ setOpen }) {
 
       if (response.ok) {
         toast.success("Anúncio adicionado com sucesso");
-        //preciso recarregar os anuncios
+        getAnuncios();
         setOpen(false);
       }
     } catch (error) {

@@ -59,14 +59,18 @@ export default function App() {
         <>
           <Navbar />
           <SectionHeader setOpen={setOpen} />
-          <Card texto={"Meus anúncios"} setOpenModal={setOpenModal} />
+          <Card
+            texto={"Meus anúncios"}
+            setOpenModal={setOpenModal}
+            dataAnuncios={dataAnuncios}
+          />
 
           <Drawer
             open={open}
             setOpen={setOpen}
             drawerTitle={"Adicionar anúncio"}
           >
-            <FormAddAnuncios setOpen={setOpen} />
+            <FormAddAnuncios setOpen={setOpen} getAnuncios={getAnuncios} />
           </Drawer>
           <Modal open={openModal} setOpen={setOpenModal} />
         </>

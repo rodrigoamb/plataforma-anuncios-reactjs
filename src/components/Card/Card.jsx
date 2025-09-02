@@ -1,36 +1,13 @@
-export default function Card({ texto, setOpenModal }) {
-  const jobs = [
-    {
-      title: "UI – Front End Dev",
-      desc: "Currently, ManTech is seeking a motivated, career and customer-oriented Software Developer to join our team in Fort Meade, MD.",
-      date: "May 17, 2022",
-      salary: "98,000 USD",
-      type: "Full-time",
-      location: "Columbia, MD",
-      href: "javascript:void(0)",
-    },
-    {
-      title: "Back End Developer",
-      desc: " Help us solve problems and develop great user interface tools for our developers.",
-      date: "Nov 11, 2022",
-      salary: "$105,000 USD",
-      type: "Part-time",
-      location: "Remote",
-      href: "javascript:void(0)",
-    },
-    {
-      title: "Full-Stack Developer",
-      desc: "This position is 100% remote, working as part of a small, multi-functional team. You must be confident at working alone.",
-      date: "Jan 2, 2022",
-      salary: "163,273 USD",
-      type: "Full-time",
-      location: "Remote",
-      href: "javascript:void(0)",
-    },
-  ];
-
+export default function Card({ texto, setOpenModal, dataAnuncios }) {
   function handleOpenModalDelete() {
     setOpenModal(true);
+  }
+
+  function formataData(data) {
+    const dateSplit = data.split("T");
+    const date = dateSplit[0].split("-").reverse().join("/");
+
+    return date;
   }
 
   return (
@@ -40,11 +17,11 @@ export default function Card({ texto, setOpenModal }) {
       </div>
 
       <ul className="mt-12 space-y-6">
-        {jobs.map((item, idx) => (
+        {dataAnuncios?.map((item, idx) => (
           <li key={idx} className="p-5 bg-white rounded-md shadow-sm">
             <a href={item.href} className="flex flex-row gap-5">
               <img
-                src="https://images.unsplash.com/photo-1556155092-490a1ba16284?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+                src={item.imagem}
                 alt="imagem anuncio"
                 className="w-[300px] rounded-xl"
               />
@@ -52,9 +29,11 @@ export default function Card({ texto, setOpenModal }) {
                 <div className="justify-between sm:flex">
                   <div className="flex-1">
                     <h3 className="text-xl font-medium text-cyan-600">
-                      {item.title}
+                      {item.titulo}
                     </h3>
-                    <p className="text-gray-500 mt-2 pr-2">{item.desc}</p>
+                    <p className="text-gray-500 mt-2 pr-2">
+                      {item.descricaoCurta}
+                    </p>
                   </div>
                   <div className="mt-5 space-y-4 text-sm sm:mt-0 sm:space-y-2">
                     <span className="flex items-center text-gray-500">
@@ -70,7 +49,7 @@ export default function Card({ texto, setOpenModal }) {
                           clipRule="evenodd"
                         />
                       </svg>
-                      {item.date}
+                      {formataData(item.created_at)}
                     </span>
                     <span className="flex items-center text-gray-500">
                       <svg
@@ -86,7 +65,7 @@ export default function Card({ texto, setOpenModal }) {
                           clipRule="evenodd"
                         />
                       </svg>
-                      {item.salary}
+                      R${item.preco}
                     </span>
                   </div>
                 </div>
@@ -118,7 +97,7 @@ export default function Card({ texto, setOpenModal }) {
                         clipRule="evenodd"
                       />
                     </svg>
-                    {item.location}
+                    {item.usuario.cidade},{item.usuario.estado}
                   </span>
                 </div>
               </div>
