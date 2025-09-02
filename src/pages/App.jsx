@@ -6,6 +6,7 @@ import SectionHeader from "../components/SectionHeader/SectionHeader.jsx";
 import Modal from "../components/Modal/Modal.jsx";
 import FormAddAnuncios from "../components/FormAddAnuncios/FormAddAnuncios.jsx";
 import { toast } from "react-toastify";
+import Spinner from "../components/Spinner/Spinner.jsx";
 
 export default function App() {
   const [open, setOpen] = useState(false);
@@ -53,7 +54,7 @@ export default function App() {
   return (
     <div>
       {isLoading ? (
-        <>carregando...</>
+        <Spinner />
       ) : (
         <>
           <Navbar />
