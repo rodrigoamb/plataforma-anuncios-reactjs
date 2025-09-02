@@ -20,15 +20,14 @@ export default function Card({ texto, setOpenModal, dataAnuncios }) {
         {dataAnuncios?.map((item, idx) => (
           <li key={idx} className="p-5 bg-white rounded-md shadow-sm">
             <a href={item.href} className="flex flex-row gap-5">
-              <img
-                src={item.imagem}
-                alt="imagem anuncio"
-                className="w-[300px] rounded-xl"
-              />
-              <div>
+              <div className="w-[300px]  rounded-xl bg-red-300 object-contain">
+                <img src={item.imagem} alt="imagem anuncio" className="" />
+              </div>
+
+              <div className="w-full">
                 <div className="justify-between sm:flex">
                   <div className="flex-1">
-                    <h3 className="text-xl font-medium text-cyan-600">
+                    <h3 className="text-xl w-[90%] font-medium text-cyan-600">
                       {item.titulo}
                     </h3>
                     <p className="text-gray-500 mt-2 pr-2">
@@ -51,7 +50,7 @@ export default function Card({ texto, setOpenModal, dataAnuncios }) {
                       </svg>
                       {formataData(item.created_at)}
                     </span>
-                    <span className="flex items-center text-gray-500">
+                    <span className="flex items-center text-[#9037FF] text-2xl font-bold">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="h-5 w-5 mr-2"
