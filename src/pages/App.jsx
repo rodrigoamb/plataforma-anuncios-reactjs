@@ -34,7 +34,7 @@ export default function App() {
       const data = await response.json();
 
       if (response.ok) {
-        return data;
+        setDataAnuncios(data);
       }
     } catch (error) {
       console.error(error);
@@ -45,11 +45,7 @@ export default function App() {
   }
 
   useEffect(() => {
-    async function fetchData() {
-      const dataAnuncio = await getAnuncios();
-      setDataAnuncios(dataAnuncio);
-    }
-    fetchData();
+    getAnuncios();
   }, []);
 
   console.log(dataAnuncios);
